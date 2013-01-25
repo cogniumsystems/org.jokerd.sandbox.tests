@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.jockerd.sandbox.tests
+Bundle-SymbolicName: org.jokerd.sandbox.tests
+Bundle-Version: 0.1.0
+ExecutionEnvironment: J2SE-1.6
