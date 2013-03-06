@@ -2,6 +2,7 @@ package org.jokerd.opensocial.sandbox;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jockerd.opensocial.feeds.FeedActivitiesCursor;
@@ -25,13 +26,14 @@ public class FeedTwitterFacebookSandbox {
             "http://feeds.bbci.co.uk/news/rss.xml",
             "http://www.lemonde.fr/rss/une.xml",
             "http://lacantine.org/events/feed.rss");
-        List<IActivityCursor> streams = FeedActivitiesCursor
-            .getFeedCursors(urls);
+        List<IActivityCursor> streams = new ArrayList<IActivityCursor>();
+
+        streams.addAll(FeedActivitiesCursor.getFeedCursors(urls));
 
         SandboxUtils fbUtils = new SandboxUtils("facebook.com");
         FacebookActivitiesCursor fbCursor = new FacebookActivitiesCursor(
             fbUtils.newOAuthHelper());
-        streams.add(fbCursor);
+        streams.add(new TryCatchActivityCursor(fbCursor));
 
         SandboxUtils twUtils = new SandboxUtils("twitter.com");
         String url = "http://api.twitter.com/1/statuses/home_timeline.json?include_entities=true&count=200";
@@ -40,7 +42,6 @@ public class FeedTwitterFacebookSandbox {
             url);
         streams.add(twCursor);
 
-        // streams.add(tweetCursor);
         IActivityCursor cursor = new ActivityMergeCursor(streams);
         SandboxUtils.printActivities(outFile, cursor);
     }

@@ -168,8 +168,9 @@ public class SandboxUtils {
 
     public SandboxUtils(String networkName) throws IOException {
         // TODO: fixme
-        this(System.getProperty("user.home")
-            + "/git/org.jokerd.opensocial/workdir", networkName);
+        this(
+           "../../org.jokerd/workdir",
+            networkName);
     }
 
     public SandboxUtils(String baseDir, String networkName, String... args)
@@ -225,7 +226,7 @@ public class SandboxUtils {
         showActivityStream(cursor);
     }
 
-    protected void showActivityStream(IActivityCursor cursor)
+    protected void showActivityStream(final IActivityCursor cursor)
         throws StreamException,
         IOException {
         try {
