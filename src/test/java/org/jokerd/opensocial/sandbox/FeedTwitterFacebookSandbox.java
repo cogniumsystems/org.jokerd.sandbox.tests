@@ -9,7 +9,7 @@ import org.jockerd.opensocial.feeds.FeedActivitiesCursor;
 import org.jokerd.opensocial.cursors.ActivityMergeCursor;
 import org.jokerd.opensocial.cursors.IActivityCursor;
 import org.jokerd.opensocial.facebook.FacebookActivitiesCursor;
-import org.jokerd.opensocial.tweeter.TweetActivitiesCursor;
+import org.jokerd.opensocial.twitter.TwitterActivitiesCursor;
 
 public class FeedTwitterFacebookSandbox {
 
@@ -37,7 +37,7 @@ public class FeedTwitterFacebookSandbox {
 
         SandboxUtils twUtils = new SandboxUtils("twitter.com");
         String url = "http://api.twitter.com/1/statuses/home_timeline.json?include_entities=true&count=200";
-        TweetActivitiesCursor twCursor = new TweetActivitiesCursor(
+        TwitterActivitiesCursor twCursor = new TwitterActivitiesCursor(
             twUtils.newOAuthHelper(),
             url);
         streams.add(twCursor);

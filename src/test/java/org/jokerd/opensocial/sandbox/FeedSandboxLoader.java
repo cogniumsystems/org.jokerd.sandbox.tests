@@ -17,7 +17,7 @@ import org.jokerd.opensocial.oauth.OAuthHelper;
 import org.jokerd.opensocial.scheduler.ActivityFormatterCursor;
 import org.jokerd.opensocial.scheduler.ActivityStreamProvider;
 import org.jokerd.opensocial.scheduler.DynamicActivityCursorProvider;
-import org.jokerd.opensocial.tweeter.TweetActivitiesCursor;
+import org.jokerd.opensocial.twitter.TwitterActivitiesCursor;
 
 public class FeedSandboxLoader {
 
@@ -59,7 +59,7 @@ public class FeedSandboxLoader {
                 throws StreamException {
                 // FIXME: get the oauthHelper depending on the twitter ID
                 String url = "http://api.twitter.com/1/statuses/home_timeline.json?include_entities=true&count=200";
-                IActivityCursor cursor = new TweetActivitiesCursor(
+                IActivityCursor cursor = new TwitterActivitiesCursor(
                     oauthHelper,
                     url);
                 return cursor;
